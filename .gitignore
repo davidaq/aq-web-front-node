@@ -1,4 +1,6 @@
 .*
-tmp
 *.swp
 *.bak
+tmp
+test
+node_modules
