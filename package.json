@@ -23,13 +23,16 @@
   "homepage": "https://github.com/davidaq/aq-web-front-node",
   "dependencies": {
     "babel-core": "^6.2.1",
+    "babel-plugin-uglify": "^1.0.2",
     "babel-preset-es2015": "^6.1.18",
     "babel-preset-react": "^6.1.18",
     "babel-preset-stage-0": "^6.1.18",
     "chokidar": "^1.3.0",
-    "combine-source-map": "^0.7.1",
+    "concat-stream": "^1.5.1",
     "esprima": "^2.7.0",
     "node-sass": "^3.4.2",
+    "sourcemap-codec": "^1.2.1",
+    "uglify-js": "^2.6.1",
     "underscore": "^1.8.3",
     "yargs": "^3.30.0"
   }
