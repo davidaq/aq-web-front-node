@@ -50,6 +50,7 @@
     "concat-stream": "^1.5.1",
     "sass.js": "^0.9.4",
     "sourcemap-codec": "^1.2.1",
+    "traceback": "^0.3.1",
     "underscore": "^1.8.3",
     "yamljs": "^0.2.4",
     "yargs": "^3.30.0"
