@@ -50,10 +50,10 @@
     "concat-stream": "^1.5.1",
     "json-tokenizer": "^1.0.1",
     "jsonlint": "^1.6.2",
-    "sass.js": "^0.9.4",
     "sourcemap-codec": "^1.2.1",
     "traceback": "^0.3.1",
     "underscore": "^1.8.3",
+    "uuid": "^2.0.1",
     "yamljs": "^0.2.4",
     "yargs": "^3.30.0"
   }
