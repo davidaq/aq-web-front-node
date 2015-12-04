@@ -50,6 +50,7 @@
     "concat-stream": "^1.5.1",
     "json-tokenizer": "^1.0.1",
     "sourcemap-codec": "^1.2.1",
+    "stylus": "^0.52.4",
     "traceback": "^0.3.1",
     "underscore": "^1.8.3",
     "uuid": "^2.0.1",
