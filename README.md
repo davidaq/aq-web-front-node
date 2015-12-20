@@ -309,14 +309,13 @@ Other than the normal use of EventEmitter, there's also an convient use with Vie
         counter++;
     }, 1000);
 
-Calling follow will cause the 
+Calling `this.follow(emitter, eventName)` in a View will cause rerender when an event
+is emitted from emitter.
     
 #### lodash and jQuery
 
     import * as _ from 'lodash'; // underscore may also be used if prefered
     import * as $ from 'jQuery';
-    
-
     
 #### A full working example: Grocery list
 
