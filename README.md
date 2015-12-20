@@ -212,8 +212,48 @@ A jsx file generates a module exporting a React class rendering the contents of 
 
 #### Stylus integration
 
+*app/Style.styl*
+
+    @import 'nib'; // nib is available to import
+    
+    color: #00F
+    .message
+        background: #F00
+        
+*app/Body.jsx*
+    
+    import 'Style';
+    
+    <div className={Style}>
+        <div className="message">
+            Hello World
+        </div>
+    </div>
+    
+Stylus files will construct a module which can be imported and used as a class name. 
+Stylus style sheets will never be applied globally, it will only affect elements with corresponding
+class name.
+
 #### XMLHttpRequest
 
+    // normal use of XMLHttpRequest, works for IE too
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'http://example.com', true);
+    xhr.onreadystatechange = function() {if (xhr.readyState == 4) {...}};
+    xhr.send();
+    
+    // convient AJAX methods, just as it is like when calling $.get or $.post
+    XMLHttpRequest.get('http://example.com/api', function(result) {
+        ...
+    }, 'JSON');
+    XMLHttpRequest.post('http://example.com/api', {param:value}, function(result) {
+        ...
+    }, 'JSON');
+    // JSONP is still under work
+    XMLHttpRequest.jsonp('http://example.com/api?callback=?', function(result) {
+        ...
+    });
+    
 #### EventEmitter
 
 #### lodash and jQuery
@@ -226,5 +266,5 @@ Caveat
  - Please do not define a module named `View`, it will mess up React Support.
  - Do not name variable as `$$$AWF$$$`, which is used by the AWF framework.
  - Module names do not include anything after `.`, `app/Mod.A.js` should be imported as `Mod`.
-   And so `app/Mod.A.js` will conflict with `app/Mod.B.jsx`, and will cause an link error.
+   So `app/Mod.A.js` will conflict with `app/Mod.B.jsx`, and will cause an link error.
  - Circular import is not allowed. A link error will occur if done so.
