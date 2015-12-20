@@ -146,7 +146,7 @@ responsible for compatibility issues on legacy browsers.
         }
     }
     
-*app/B/index.js* (when named as index, this module is imported as directory path)
+*app/B/index.js* <sub>(when named as index, this module is imported as directory path)</sub>
     
     import '../A';
     
