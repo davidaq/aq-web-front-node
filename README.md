@@ -63,7 +63,15 @@ This is just an example of how things can work, actual usage may vary.
 Examples
 --------
 
-Document needs further completion.
+ - [Basic Usage](#basic-usage)
+ - [ES2015](#es2015)
+ - [Module import and export](#module-import-and-export)
+ - [JSX classes](#jsx-classes)
+ - [Stylus integration](#stylus-integration)
+ - [XMLHttpRequest](#xmlhttprequest)
+ - [EventEmitter](#eventemitter)
+ - [lodash and jQuery](#lodash-and-jquery)
+ - [A fully working example: Grocery list](#a-full-working-example-grocery-list)
 
 #### Basic usage
 
@@ -317,7 +325,9 @@ is emitted from emitter.
     import * as _ from 'lodash'; // underscore may also be used if prefered
     import * as $ from 'jQuery';
     
-#### A full working example: Grocery list
+#### A fully working example: Grocery list
+
+Document needs further completion.
 
 Caveat
 ------
