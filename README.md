@@ -8,7 +8,7 @@ Integration of some of the currently best frontend frameworks: Babel, React and 
  - [Installation](#installation)
  - [Usage](#usage)
  - [Features](#features)
- - [Directory Structure](#director-structure)
+ - [Directory Structure](#directory-structure)
  - [Examples](#examples)
 
 Installation
