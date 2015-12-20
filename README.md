@@ -5,6 +5,12 @@ AWF is a compilation framework to allow coding web frontends in a modern style.
 
 Integration of some of the currently best frontend frameworks: Babel, React and Stylus.
 
+ - [Installation](#installation)
+ - [Usage](#usage)
+ - [Features](#features)
+ - [Directory Structure](#director-structure)
+ - [Examples](#examples)
+
 Installation
 ------------
 
@@ -103,7 +109,7 @@ Examples
    or apending '#DEBUG' to the url when navigating (may need to refresh) to activate debug mode.
  - With the help of source map, you'll be able to trace where the console output is written in
    the source files. Some browsers (such as safari) will cache source map files, may need to
-   manually clean caching.
+   clean caching manually.
 
 #### ES2015
 
