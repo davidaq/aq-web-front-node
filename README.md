@@ -146,9 +146,9 @@ responsible for compatibility issues on legacy browsers.
         }
     }
     
-*app/B/index.js* <sub>(when named as index, this module is imported as directory path)</sub>
+*app/B/index.js* <sub>(when named as index, this module is imported as directory path, i.e. 'B')</sub>
     
-    import '../A';
+    import '../A'; // will be parsed as `import * as A from '../A';`
     
     export default ClassB extends A {
         whoAmI() {
@@ -158,7 +158,7 @@ responsible for compatibility issues on legacy browsers.
     
 *app/subdir/C.js*
     
-    import * as Class from 'B'; // when not started as './' or '../', the path will be resolved
+    import * as Class from 'B'; // when not starting with './' or '../', the path will be resolved
                                 // relative to app diretory, so this is the same as import '../B'
     
     var b = new Class();
@@ -166,10 +166,62 @@ responsible for compatibility issues on legacy browsers.
     
 #### JSX classes
 
+*app/Template.jsx*
+
+    <div>
+        <button if={this.state.showBtn} onClick={this.onBtnClick}>click me</button>
+    </div>
+    
+*app/Control.js*
+
+    import './Template';
+    
+    class Control extends Template {
+        componentWillMount() {
+            this.setState({showBtn:true});
+        }
+        onBtnClick() {
+            alert('Button clicked!');
+            this.setState({showBtn:false});
+        }
+    }
+    
+*app/Body.jsx*
+
+    import 'Control'; // You may import in a jsx file just as how you would do in a js file
+    
+    <div>
+        <Control/>
+    </div>
+    
+*app/Main.js*
+
+    import 'View';  // this is a builtin class, representing React class along with some 
+                    // extra features
+    import 'Body';
+    
+    class Main extends View { // a example of how to define a React class directly in js code
+        render() {
+            return <Body/>;
+        }
+    }
+    
+    ReactDOM.render(<Main/>, document.body);
+    
+A jsx file generates a module exporting a React class rendering the contents of of the jsx file.
+
 #### Stylus integration
 
 #### XMLHttpRequest
 
-#### lodash and EventEmitter and jQuery
+#### EventEmitter
+
+#### lodash and jQuery
 
 #### A full working example: Grocery list
+
+Caveat
+------
+
+ - Please do not define a module named 'View', it will mess up React Support.
+ - Do not name variable as `$$$AWF$$$`, which is used by the AWF framework.
