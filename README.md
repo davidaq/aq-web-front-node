@@ -71,7 +71,7 @@ Examples
  - [XMLHttpRequest](#xmlhttprequest)
  - [EventEmitter](#eventemitter)
  - [lodash and jQuery](#lodash-and-jquery)
- - [A fully working example: Grocery list](#a-full-working-example-grocery-list)
+ - [A fully working example: Grocery list](#a-fully-working-example-grocery-list)
 
 #### Basic usage
 
