@@ -249,15 +249,75 @@ class name.
     XMLHttpRequest.post('http://example.com/api', {param:value}, function(result) {
         ...
     }, 'JSON');
-    // JSONP is still under work
     XMLHttpRequest.jsonp('http://example.com/api?callback=?', function(result) {
         ...
     });
+
+JSONP is still under work.
     
 #### EventEmitter
 
+    import 'EventEmitter';
+    
+    class Obj extends EventEmitter {
+        set(val) {
+            this.val;
+            this.emit('updated');
+        }
+    }
+    
+    var obj = new Obj();
+    obj.on('updated', function() {
+        alert(obj.val);
+    })
+    obj.set('Hello!');
+    
+This is a show case of how EventEmitter can be used, visit the 
+[EventEmitter](https://github.com/Olical/EventEmitter) project for further information.
+
+Other than the normal use of EventEmitter, there's also an convient use with View.
+
+    import 'View';
+    import 'EventEmitter';
+    
+    class Widget extends View {
+        componentWillMount() {
+            this.follow(this.props.message, 'updated');
+        }
+        render() {
+            return <div>{this.props.message.val}</div>;
+        }
+    }
+    
+    class Message extends EventEmitter {
+        constructor() {
+            super();
+            this.val = '';
+        }
+        set(val) {
+            this.val = val;
+            this.emit('updated');
+        }
+    }
+    
+    var msg = new Message();
+    ReactDOM.render(<Widget message={msg}/>, document.body);
+    
+    var counter = 0;
+    setInterval(() => {
+        msg.set(counter + 's elapsed');
+        counter++;
+    }, 1000);
+
+Calling follow will cause the 
+    
 #### lodash and jQuery
 
+    import * as _ from 'lodash'; // underscore may also be used if prefered
+    import * as $ from 'jQuery';
+    
+
+    
 #### A full working example: Grocery list
 
 Caveat
