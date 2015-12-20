@@ -65,18 +65,18 @@ Examples
 
 Document needs further completion.
 
-### Basic usage
+#### Basic usage
 
-### ES2015
+#### ES2015
 
-### Module import
+#### Module import
 
-### JSX classes
+#### JSX classes
 
-### Stylus integration
+#### Stylus integration
 
-### XMLHttpRequest
+#### XMLHttpRequest
 
-### lodash and EventEmitter and jQuery
+#### lodash and EventEmitter and jQuery
 
-### A full working example: Grocery list
+#### A full working example: Grocery list
