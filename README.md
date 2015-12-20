@@ -67,6 +67,33 @@ Document needs further completion.
 
 #### Basic usage
 
+*index.html*
+
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <title>AWF Basic Usage</title>
+        <link href="app.css" rel="stylesheet" type="text/css"/>
+        <script src="app.js" type="text/javascript"></script>
+      </head>
+      <body>
+      </body>
+    </html>
+
+*app/BasicUsage.js*
+
+    console.log('It works');                                // output to console
+    ReactDOM.render(<div>It works</div>, document.body);    // output to DOM
+
+**Note:**
+
+ - document.body will be available in all popular browsers including IE6
+ - React deprecates rendering to document.body, but you won't see the warning message.
+   This is because normally the minified version of react is loaded.
+   You will be able to see warning messages and detailed React error messages in debug mode.
+   Debug mode may be activated by adding '#DEBUG' to the browser url, 
+   or add `<script type="text/javascript">DEBUG=true</script>` before loading app.js.
+    
 #### ES2015
 
 #### Module import
