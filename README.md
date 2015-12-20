@@ -58,7 +58,7 @@ This is just an example of how things can work, actual usage may vary.
  - As described in the usage description, 
    the names of app.* or app.*.map files will follow the name of app directory
  - _build directory is used for caching, deleting will cause a full recompile.
-   *PLEASE KEEP THIS DIRECTORY ALONE*, do not put anything useful in here.
+   ***Please Leave This Directory Alone***, do not put anything useful in here.
 
 Examples
 --------
