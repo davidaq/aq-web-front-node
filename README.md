@@ -87,16 +87,52 @@ Document needs further completion.
 
 **Note:**
 
- - document.body will be available in all popular browsers including IE6
+ - `document.body` will be available in all popular browsers including IE6
  - React deprecates rendering to document.body, but you won't see the warning message.
    This is because normally the minified version of react is loaded.
    You will be able to see warning messages and detailed React error messages in debug mode.
-   Debug mode may be activated by adding '#DEBUG' to the browser url, 
-   or add `<script type="text/javascript">DEBUG=true</script>` before loading app.js.
-    
+   Adding `<script type="text/javascript">DEBUG=true</script>` before loading app.js,
+   or apending '#DEBUG' to the url when navigating (may need to refresh) to activate debug mode.
+ - With the help of source map, you'll be able to trace where the console output is written in
+   the source files. Some browsers (such as safari) will cache source map files, may need to
+   manually clean caching.
+
 #### ES2015
 
-#### Module import
+*app/ES2015.js*
+
+    // class definition and inheritance
+    class A {
+        whoAmI() {
+            return 'A';
+        }
+    }
+    class B extends A {
+        whoAmI() {
+            return 'B : ' + super.whoAmI();
+        }
+    }
+    var b = new B();
+    console.log(b.whoAmI()); //$> B : A
+    
+    // for of iteration (AWF fixed this feature to make it compatible with IE6)
+    var str = '';
+    for (var num of [5, 4, 3, 2, 1]) {
+        str += num + ' - ';
+    }
+    console.log(str); //$> 5 - 4 - 3 - 2 - 1 -
+    
+    // function argument default values
+    function add(a, b=1) {
+        return a + b;
+    }
+    console.log(add(2, add(1))); //$> 4
+    
+This is an example of how you can use some of the language features specified in EcmaScript 6.
+For more information checkout the [learn ES2015](http://babeljs.io/docs/learn-es2015/) section
+of the [Babel](http://babeljs.io/) project.
+
+#### Module import and export
 
 #### JSX classes
 
