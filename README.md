@@ -266,8 +266,6 @@ class name.
     XMLHttpRequest.jsonp('http://example.com/api?callback=?', function(result) {
         ...
     });
-
-JSONP is still under work.
     
 #### EventEmitter
 
@@ -324,7 +322,12 @@ Other than the normal use of EventEmitter, there's also an convient use with Vie
     }, 1000);
 
 Calling `this.follow(emitter, eventName)` in a View will cause rerender when an event
-is emitted from emitter.
+is emitted from emitter. The event listener will be automatically unregistered when the
+react component is unmounted, no need to hassle to calling `off` and keeping handler 
+functions.
+
+Note `this.follow` may only be called in `componentWillMount`, and that's also where
+you should set initial component state.
     
 #### lodash and jQuery
 
