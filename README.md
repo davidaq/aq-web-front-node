@@ -210,11 +210,12 @@ responsible for compatibility issues on legacy browsers.
     
 *app/Main.js*
 
-    import 'View';  // this is a builtin class, representing React class along with some 
-                    // extra features
+    import 'UIComponent';  // this is a builtin class, representing React component class 
+                           // along with some extra features
     import 'Body';
     
-    class Main extends View { // a example of how to define a React class directly in js code
+    class Main extends UIComponent { // a example of how to define a React class 
+                                     // directly in js code
         render() {
             return <Body/>;
         }
@@ -287,12 +288,12 @@ class name.
 This is a show case of how EventEmitter can be used, visit the 
 [EventEmitter](https://github.com/Olical/EventEmitter) project for further information.
 
-Other than the normal use of EventEmitter, there's also an convient use with View.
+Other than the normal use of EventEmitter, there's also an convient use with UIComponent.
 
-    import 'View';
+    import 'UIComponent';
     import 'EventEmitter';
     
-    class Widget extends View {
+    class Widget extends UIComponent {
         componentWillMount() {
             this.follow(this.props.message, 'updated');
         }
@@ -321,10 +322,10 @@ Other than the normal use of EventEmitter, there's also an convient use with Vie
         counter++;
     }, 1000);
 
-Calling `this.follow(emitter, eventName)` in a View will cause rerender when an event
-is emitted from emitter. The event listener will be automatically unregistered when the
-react component is unmounted, no need to hassle to calling `off` and keeping handler 
-functions.
+Calling `this.follow(emitter, eventName)` in a UIComponent will make the component
+rerender when a sepcified event is emitted from emitter. The event listener will 
+be automatically unregistered when the component is unmounted, no need to hassle 
+calling `off` and keeping handler functions.
 
 Note `this.follow` may only be called in `componentWillMount`, and that's also where
 you should set initial component state.
@@ -341,7 +342,7 @@ Document needs further completion.
 Caveat
 ------
 
- - Please do not define a module named `View`, it will mess up React Support.
+ - Please do not define a module named `UIComponent`, it will mess up React Support.
  - Do not name variable as `$$$AWF$$$`, which is used by the AWF framework.
  - Module names do not include anything after `.`, `app/Mod.A.js` should be imported as `Mod`.
    So `app/Mod.A.js` will conflict with `app/Mod.B.jsx`, and will cause an link error.
