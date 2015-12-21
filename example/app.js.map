@@ -1,0 +1,1 @@
+{"sources":["test.js"],"sourcesContent":["ReactDOM.render(<div>W</div>, document.body);"],"mappings":";;;;;;;;;;;;aAAA,QAAQ,CAAC,MAAM,CAAC,mCAAY,CAAE,QAAQ,CAAC,IAAI,CAAC,CAAC;","version":3}
