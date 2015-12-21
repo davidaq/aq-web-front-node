@@ -1,0 +1,36 @@
+@import 'nib';
+&
+    font-family: 'arial'
+    width: 400px
+.title
+    font-weight: bold
+    font-size: 1.5em
+.item
+    size=15px
+    height=25px
+    position: relative
+    line-height: height
+    &.crossed
+        text-decoration: line-through
+    &:hover
+        background: #F7F7F7
+    .cross,.remove
+        pad=(height - size) / 2
+        absolute: top pad right pad
+        display: block
+        width: size
+        height: size
+        border-radius: size
+        line-height: size
+        font-size: 0.5em
+        text-align: center
+        color: #FFF
+        cursor: pointer
+    .cross
+        background: #CCC
+        &::after
+            content: '-'
+    .remove
+        background: #C00
+        &::after
+            content: 'x'

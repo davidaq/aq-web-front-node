@@ -162,7 +162,7 @@ responsible for compatibility issues on legacy browsers.
     
 *app/B/index.js* <sub>(when named as index, this module is imported as directory path, i.e. 'B')</sub>
     
-    import '../A'; // will be parsed as `import * as A from '../A';`
+    import '../A'; // will be parsed as `import A from '../A';`
     
     export default ClassB extends A {
         whoAmI() {
@@ -172,8 +172,8 @@ responsible for compatibility issues on legacy browsers.
     
 *app/subdir/C.js*
     
-    import * as Class from 'B'; // when not starting with './' or '../', the path will be resolved
-                                // relative to app diretory, so this is the same as import '../B'
+    import Class from 'B'; // when not starting with './' or '../', the path will be resolved
+                           // relative to app diretory, so this is the same as import '../B'
     
     var b = new Class();
     console.log(b.whoAmI()); //$> B : A
@@ -332,8 +332,8 @@ you should set initial component state.
     
 #### lodash and jQuery
 
-    import * as _ from 'lodash'; // underscore may also be used if prefered
-    import * as $ from 'jQuery';
+    import _ from 'lodash'; // underscore may also be used if prefered
+    import $ from 'jQuery';
     
 #### A fully working example: Grocery list
 
