@@ -24,7 +24,7 @@ Usage
     awf
 
 Running `awf` will start watching changes in the `app` directory, and generate
-the following files in parent directory: app.js, app.js.map, app.css, app.css.map.
+the following files in parent directory: app.js, app.css.
 
 Note: The name of the generated files will be the same as the watched directory. 
 i.e. you may watch in `home` directory, and generated files will be home.js etc.
