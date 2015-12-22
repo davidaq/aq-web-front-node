@@ -11,9 +11,10 @@
     "url": "https://github.com/davidaq/aq-web-front-node.git"
   },
   "keywords": [
-    "Frontend",
-    "TypeScript",
-    "Sass"
+    "Babel",
+    "Stylus",
+    "frontend",
+    "transpile"
   ],
   "author": "DavidAQ",
   "license": "MIT",
