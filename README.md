@@ -325,13 +325,17 @@ Other than the normal use of EventEmitter, there's also an convient use with UIC
         counter++;
     }, 1000);
 
-Calling `this.follow(emitter, eventName)` in a UIComponent will make the component
-rerender when a sepcified event is emitted from emitter. The event listener will 
-be automatically unregistered when the component is unmounted, no need to hassle 
+Calling `this.follow(emitter, eventName='update')` in a UIComponent will make the 
+component rerender when a sepcified event is emitted from emitter. The event listener
+will be automatically unregistered when the component is unmounted, no need to hassle
 calling `off` and keeping handler functions.
 
-Note `this.follow` may only be called in `componentWillMount`, and that's also where
-you should set initial component state.
+Note `UIComponent.follow` may only be called in `UIComponent.componentWillMount`, 
+and that's also where you should set initial component state.
+
+A follow method is also defined in the `EventEmitter` it self to allow an emitter
+to automatically emit an event when another emitter emits a corresponding event.
+`EventEmitter.follow(anotherEmiter, eventName='update')[.as(emitEventName)]`
     
 #### lodash and jQuery
 
