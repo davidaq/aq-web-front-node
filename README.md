@@ -175,8 +175,9 @@ responsible for compatibility issues on legacy browsers.
     
 *app/subdir/C.js*
     
-    import Class from 'B'; // when not starting with './' or '../', the path will be resolved
-                           // relative to app diretory, so this is the same as import '../B'
+    import Class from 'B'; // when not starting with './' or '../', the path will be 
+                           // resolved relative to app diretory, so this is the same 
+                           // as writing `import '../B'`
     
     var b = new Class();
     console.log(b.whoAmI()); //$> B : A
