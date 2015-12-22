@@ -1,6 +1,6 @@
 {
   "name": "aq-web-front",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A compilation framework to allow coding web frontends in a modern style.",
   "main": "index.js",
   "scripts": {
