@@ -20,14 +20,29 @@ Installation
 Usage
 -----
 
-    cd 'Project Root/.../app'
-    awf
+Initialize project directory, generate a configuration file:
+
+    $> cd 'Project Root/'
+    $> mkdir app
+    $> cd app
+    $> awf init
+    
+Begin auto progressive build:
+    
+    $> cd 'Project Root/app'
+    $> awf
 
 Running `awf` will start watching changes in the `app` directory, and generate
-the following files in parent directory: app.js, app.css.
+the following files in `Project Root/`: app.js, app.css.
 
-Note: The name of the generated files will be the same as the watched directory. 
+**Note:** The name of the generated files will be the same as the watched directory. 
 i.e. you may watch in `home` directory, and generated files will be home.js etc.
+
+**Tip:** Although you have to run `awf init` at the directory that should be watched for
+source files, running `awf` is not required to be so. You may run it anywhere, and the 
+framework will first search for child directories for configuration files, if not it will
+search up the directory tree for a configuration file. Watching will start at where existing
+configuration files were found.
 
 Features
 --------
@@ -39,7 +54,7 @@ Features
    (will automatically load ES5-Shim and ES5-Sham)
  - Convient get, post, put, delete AJAX method attached to XMLHttpRequest
    (Same usage as get and post methods in jQuery)
- - Easy import for useful JS libraries: lodash, EventEmitter, jQuery
+ - Easy import for popular JS libraries: lodash, EventEmitter, jQuery and more
    (React and ReactDOM are automatically imported if when use of JSX exists)
  - Source map gereration for both js and css artifacts
  - Every piece of code will be called when the DOM is ready
@@ -49,13 +64,15 @@ Directory Structure
 
 This is just an example of how things can work, actual usage may vary.
 
-    Project Root/ --+-- app/ -----------+-- ClassA.js
+    Project Root/ --+-- app/ -----------+-- awf.conf
                     |                   |
-                    +-- @ app.js        +-- ClassB/ ---------+-- index.js
+                    +-- @ app.js        +-- ClassA/ ---------+-- index.js
                     |                   |                    |
-                    +-- @ app.css       +-- other sources    +-- View.jsx
+                    +-- @ app.css       +-- ClassB.js    +-- View.jsx
                     |                   |                    |
-                    |                   +-- @ _build/        +-- Style.styl
+                    |                   +-- other sources        +-- Style.styl
+                    |                   |
+                    |                   +-- @ _build/
                     |
                     +-- index.html (or other AWF unrelated files)
 
@@ -79,7 +96,7 @@ Examples
  - [Stylus integration](#stylus-integration)
  - [XMLHttpRequest](#xmlhttprequest)
  - [EventEmitter](#eventemitter)
- - [lodash and jQuery](#lodash-and-jquery)
+ - [lodash, jQuery, and more](#lodash-jquery)
  - [A fully working example: Grocery list](#a-fully-working-example-grocery-list)
 
 #### Basic usage
@@ -338,10 +355,16 @@ A follow method is also defined in the `EventEmitter` it self to allow an emitte
 to automatically emit an event when another emitter emits a corresponding event.
 `EventEmitter.follow(anotherEmiter, eventName='update')[.as(emitEventName)]`
     
-#### lodash and jQuery
+#### lodash, jQuery, and more
 
     import _ from 'lodash'; // underscore may also be used if prefered
     import $ from 'jQuery';
+    import 'chart';
+    import Promise from 'bluebird';
+    import 'Kizzy';
+    
+You'll be able to use these popular libraries in your project just by a line of import.
+How these libraries are actually loaded depends on configuration.
     
 #### A fully working example: Grocery list
 
