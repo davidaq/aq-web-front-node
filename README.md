@@ -355,4 +355,5 @@ Caveat
    So `app/Mod.A.js` will conflict with `app/Mod.B.jsx`, and will cause an link error.
  - Circular import is not allowed. A link error will occur if done so.
  - When using stylus, the image and other urls should be relative to the source file.
- - Although the generated artifacts are compact, they are not minimized. You may save another several KB by using uglify.
+ - Although the generated artifacts are compact, they are not minimized.
+   You may save another several KB by using uglify.
