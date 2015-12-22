@@ -10,6 +10,7 @@ Integration of some of the currently best frontend frameworks: Babel, React and 
  - [Features](#features)
  - [Directory Structure](#directory-structure)
  - [Examples](#examples)
+ - [Caveat](#caveat)
 
 Installation
 ------------
@@ -337,7 +338,7 @@ you should set initial component state.
     
 #### A fully working example: Grocery list
 
-Document needs further completion.
+Code along with compiled result are located in the
 
 Caveat
 ------
@@ -347,3 +348,4 @@ Caveat
  - Module names do not include anything after `.`, `app/Mod.A.js` should be imported as `Mod`.
    So `app/Mod.A.js` will conflict with `app/Mod.B.jsx`, and will cause an link error.
  - Circular import is not allowed. A link error will occur if done so.
+ - When using stylus, the image and other urls should be relative to the source file.
