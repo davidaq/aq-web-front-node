@@ -344,7 +344,7 @@ to automatically emit an event when another emitter emits a corresponding event.
     
 #### A fully working example: Grocery list
 
-Code along with compiled result are located in the
+Code along with compiled result are located in the example directory of the repo.
 
 Caveat
 ------
