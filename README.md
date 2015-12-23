@@ -85,8 +85,6 @@ This is just an example of how things might work, actual usage may vary.
    the names of `app.js` and `app.css` will follow the name of `app` directory
  - `_build` directory is used for storing progressive compile cache and source maps. 
    You may change this to another name by editing the configuration file.
- - Do not put anything yourself in the `_build` directory if you don't want to mess up
-   the auto-build.
  - Delete `_build` directory if you want a full and clean recompile.
  - You may want to add `_build/` into your `.gitignore` or other version control ignore
    files to keep repo clean.
@@ -397,10 +395,14 @@ Caveat
 ------
 
  - Please do not define a module named `UIComponent`, it will mess up React Support.
- - Do not name variable as `$$$AWF$$$`, which is used by the AWF framework.
+ - Do not name variable or object member starting with `$$$AWF$$$`, which is used by the 
+   AWF framework.
+ - Do not put anything yourself in the `_build` directory if you don't want to mess up
+   the auto-build.
  - Module names do not include anything after `.`, `app/Mod.A.js` should be imported as `Mod`.
    So `app/Mod.A.js` will conflict with `app/Mod.B.jsx`, and will cause an link error.
  - Circular import is not allowed. A link error will occur if done so.
  - When using stylus, the image and other urls should be relative to the source file.
- - Although the generated artifacts are compact, they are not minimized.
-   You may save another several KB by using uglify.
+ - Although the generated artifacts are compact, they are not minimized. You may save some 
+   extra KB by using uglify.
+ - ***This framework is still under development, do just use it for anything serious yet***
