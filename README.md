@@ -405,4 +405,4 @@ Caveat
  - When using stylus, the image and other urls should be relative to the source file.
  - Although the generated artifacts are compact, they are not minimized. You may save some 
    extra KB by using uglify.
- - ***This framework is still under development, do just use it for anything serious yet***
+ - ***This framework is still under development, don't use it for anything serious yet***
