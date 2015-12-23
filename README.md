@@ -357,14 +357,14 @@ to automatically emit an event when another emitter emits a corresponding event.
     
 #### lodash, jQuery, and more
 
-    import _ from 'lodash'; // underscore may also be used if prefered
     import $ from 'jQuery';
+    import _ from 'lodash';
+    import _ from 'underscore';
     import 'chart';
     import Promise from 'bluebird';
-    import 'Kizzy';
     
 You'll be able to use these popular libraries in your project just by a line of import.
-How these libraries are actually loaded depends on configuration.
+Which and how libraries are loaded depends on configuration.
     
 #### A fully working example: Grocery list
 
