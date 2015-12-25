@@ -392,13 +392,15 @@ Code along with compiled result are located in the example directory of the repo
 Caveat
 ------
 
- - Please do not define a module named `UIComponent`, it will mess up React Support.
  - Do not name variable or object member starting with `$$$AWF$$$`, which is used by the 
    AWF framework.
+ - Do not define function or variable named `require`, it will break the import feature.
  - Do not put anything yourself in the `_build` directory if you don't want to mess up
    the auto-build.
  - Module names do not include anything after `.`, `app/Mod.A.js` should be imported as `Mod`.
    So `app/Mod.A.js` will conflict with `app/Mod.B.jsx`, and will cause an link error.
+ - External libraries and built-in modules takes precedence when importing, so naming a local
+   module as `UIComponent` will make the module unaccessible (A warning will be generated).
  - Circular import is not allowed. A link error will occur if done so.
  - When using stylus, the image and other urls should be relative to the source file.
  - Although the generated artifacts are compact, they are not minimized. You may save some 
