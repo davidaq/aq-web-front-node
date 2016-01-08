@@ -1,3 +1,6 @@
 import 'GroceryList';
 
-ReactDOM.render(<GroceryList/>, document.body);
+var body = document.createElement('div');
+document.body.appendChild(body);
+
+ReactDOM.render(<GroceryList/>, body);
