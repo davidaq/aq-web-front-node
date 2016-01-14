@@ -21,8 +21,6 @@ Features
  - Merge source files according to imports
  - Best effort to generate legacy IE compatible JS code
    (will automatically load ES5-Shim and ES5-Sham)
- - Convient get, post, put, delete AJAX method attached to XMLHttpRequest
-   (Same usage as get and post methods in jQuery)
  - Easy import for popular JS libraries: lodash, EventEmitter, jQuery and more
    (React and ReactDOM are automatically imported if when use of JSX exists)
  - Source map gereration for both js and css artifacts
