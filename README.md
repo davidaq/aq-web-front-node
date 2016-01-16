@@ -19,12 +19,14 @@ Features
  - ES2015 provided by Babel (not including features requiring pollyfill)
  - CSS preprocessing provided by Stylus (nib import allowed)
  - Merge source files according to imports
+ - Listen for data changes by using BoundObject
  - Best effort to generate legacy IE compatible JS code
-   (will automatically load ES5-Shim and ES5-Sham)
- - Easy import for popular JS libraries: lodash, EventEmitter, jQuery and more
+   (will automatically load ES5-Shim, ES5-Sham, and JSON3)
+ - for...in on arrays will only traverse array members
+ - Easy import for popular JS libraries: lodash, jQuery and more
    (React and ReactDOM are automatically imported if when use of JSX exists)
  - Source map gereration for both js and css artifacts
- - Every piece of code will be called when the DOM is ready
+ - Code will be called after the DOM is ready
 
 Installation
 ------------
@@ -114,8 +116,7 @@ Examples
  - [Module import and export](#module-import-and-export)
  - [JSX classes](#jsx-classes)
  - [Stylus integration](#stylus-integration)
- - [XMLHttpRequest](#xmlhttprequest)
- - [EventEmitter](#eventemitter)
+ - [BoundObject](#boundobject)
  - [lodash, jQuery, and more](#lodash-jquery-and-more)
  - [A fully working example: Grocery list](#a-fully-working-example-grocery-list)
 
@@ -248,12 +249,10 @@ responsible for compatibility issues on legacy browsers.
     
 *app/Main.js*
 
-    import 'UIComponent';  // this is a builtin class, representing React component class 
-                           // along with some extra features
     import 'Body';
     
-    class Main extends UIComponent { // a example of how to define a React class 
-                                     // directly in js code
+    class Main extends React.Component { // an example of how to define a React component 
+                                         // directly in js code
         render() {
             return <Body/>;
         }
@@ -262,6 +261,8 @@ responsible for compatibility issues on legacy browsers.
     ReactDOM.render(<Main/>, document.body);
     
 A jsx file generates a module exporting a React class rendering the contents of of the jsx file.
+
+**TIP:** React and ReactDOM are auto imported when any jsx syntax exists in the source file
 
 #### Stylus integration
 
@@ -287,89 +288,37 @@ Stylus files will construct a module which can be imported and used as a class n
 Stylus style sheets will never be applied globally, it will only affect elements with corresponding
 class name.
 
-#### XMLHttpRequest
+#### BoundObject
 
-    // normal use of XMLHttpRequest, works for IE too
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'http://example.com', true);
-    xhr.onreadystatechange = function() {if (xhr.readyState == 4) {...}};
-    xhr.send();
+    var obj = BoundObject.create();
+    BoundObject(obj).listen((e) => {console.log(e);})
+    e.x = 1;
+    //$> {obj:obj, key:"x", newValue:1, oldValue:undefined}
     
-    // convient AJAX methods, just as it is like when calling $.get or $.post
-    XMLHttpRequest.get('http://example.com/api', function(result) {
-        ...
-    }, 'JSON');
-    XMLHttpRequest.post('http://example.com/api', {param:value}, function(result) {
-        ...
-    }, 'JSON');
-    XMLHttpRequest.jsonp('http://example.com/api?callback=?', function(result) {
-        ...
-    });
+    var arr = [];
+    BoundObject.create(arr);
+    BoundObject(arr).listen((e) => {console.log(e);})
+    arr.push(1);
+    //$> {obj:arr, key:"length", newValue:1, oldValue:0}
     
-#### EventEmitter
+With BoundObject, you'll be able to watch for changes on the object. When a BoundObject is assigned
+as a property of another BoundObject, change events will propagate to the parent.
 
-    import 'EventEmitter';
-    
-    class Obj extends EventEmitter {
-        set(val) {
-            this.val;
-            this.emit('updated');
-        }
-    }
-    
-    var obj = new Obj();
-    obj.on('updated', function() {
-        alert(obj.val);
-    })
-    obj.set('Hello!');
-    
-This is a show case of how EventEmitter can be used, visit the 
-[EventEmitter](https://github.com/Olical/EventEmitter) project for further information.
-
-Other than the normal use of EventEmitter, there's also an convient use with UIComponent.
-
-    import 'UIComponent';
-    import 'EventEmitter';
-    
-    class Widget extends UIComponent {
+    class ExampleView extends React.Component {
+        
         componentWillMount() {
-            this.follow(this.props.message, 'updated');
+            this.obj = BoundObject.create({
+                counter: 0
+            });
+            setInterval(() => this.obj.counter++, 1000);
         }
+        
         render() {
-            return <div>{this.props.message.val}</div>;
+            return <div>{this.obj.counter}s has elapsed</div>
         }
     }
-    
-    class Message extends EventEmitter {
-        constructor() {
-            super();
-            this.val = '';
-        }
-        set(val) {
-            this.val = val;
-            this.emit('updated');
-        }
-    }
-    
-    var msg = new Message();
-    ReactDOM.render(<Widget message={msg}/>, document.body);
-    
-    var counter = 0;
-    setInterval(() => {
-        msg.set(counter + 's elapsed');
-        counter++;
-    }, 1000);
 
-Calling `this.follow(emitter, eventName='update')` in a UIComponent will make the 
-component rerender when a sepcified event is emitted from emitter. The event listener
-will be automatically unregistered when the component is unmounted.
-
-Beware that `UIComponent.follow` may only be called in `UIComponent.componentWillMount`, 
-and that's also where you should set initial component state.
-
-A follow method is also defined in the `EventEmitter` it self to allow an emitter
-to automatically emit an event when another emitter emits a corresponding event.
-`EventEmitter.follow(anotherEmiter, eventName='update')[.as(emitEventName)]`
+`React.Component` has been modified to issue `forceUpdate` whenever a member BoundObject has changed.    
     
 #### lodash, jQuery, and more
 
@@ -390,15 +339,12 @@ Code along with compiled result are located in the example directory of the repo
 Caveat
 ------
 
- - Do not name variable or object member starting with `$$$AWF$$$`, which is used by the 
-   AWF framework.
+ - Do not name variable or object member starting with `$$$AWF$$$`. Doing so might break the framework.
  - Do not define function or variable named `require`, it will break the import feature.
  - Do not put anything yourself in the `_build` directory if you don't want to mess up
    the auto-build.
  - Module names do not include anything after `.`, `app/Mod.A.js` should be imported as `Mod`.
    So `app/Mod.A.js` will conflict with `app/Mod.B.jsx`, and will cause an link error.
- - External libraries and built-in modules takes precedence when importing, so naming a local
-   module as `UIComponent` will make the module unaccessible (A warning will be generated).
  - Circular import is not allowed. A link error will occur if done so.
  - When using stylus, the image and other urls should be relative to the source file.
  - Although the generated artifacts are compact, they are not minimized. You may save some 
