@@ -1,10 +1,8 @@
-import 'EventEmitter';
-
 var counter = 0;
 
-class Model extends EventEmitter {
+class Model {
     constructor(parent, text, crossed=false) {
-        super();
+        BoundObject.create(this);
         this.id = counter++;
         this.parent = parent;
         this.text = text;
@@ -12,7 +10,6 @@ class Model extends EventEmitter {
     }
     cross() {
         this.crossed = true;
-        this.emit('update');
     }
     remove() {
         this.parent.removeItem(this);

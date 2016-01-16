@@ -1,10 +1,9 @@
 import ListItemModel from './ListItem/Model';
-import 'EventEmitter';
 
-class Model extends EventEmitter {
+class Model {
     constructor() {
-        super();
-        this.list = [];
+        BoundObject.create(this);
+        this.list = BoundObject.create([]);
         if (localStorage.GroceryList) {
             var list = JSON.parse(localStorage.GroceryList);
             for (var item of list) {
@@ -12,24 +11,19 @@ class Model extends EventEmitter {
                 this.list.push(item);
             }
         }
-        this.on('update', this.saveOnUpdate);
+        BoundObject(this.list).listen(() => this.saveOnUpdate());
     }
     addItem(text) {
         if (!text)
             return;
         var item = new ListItemModel(this, text);
         this.list.push(item);
-        this.emit('update');
         return item;
     }
     removeItem(item) {
-        for (var i = 0; i < this.list.length; i++) {
-            if (this.list[i] == item) {
-                this.list.splice(i, 1);
-                this.emit('update');
-                break;
-            }
-        }
+        var pos = this.list.indexOf(item);
+        if (pos > -1)
+            this.list.splice(pos, 1);
     }
     saveOnUpdate() {
         localStorage.setItem("GroceryList", JSON.stringify(this.list));
