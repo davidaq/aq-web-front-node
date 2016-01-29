@@ -1,6 +1,6 @@
 {
   "name": "aq-web-front",
-  "version": "0.1.22",
+  "version": "0.1.23",
   "description": "A compilation framework to allow coding web frontends in a modern style.",
   "main": "index.js",
   "scripts": {
@@ -24,6 +24,7 @@
   "homepage": "https://github.com/davidaq/aq-web-front-node",
   "dependencies": {
     "babel-core": "^6.2.1",
+    "babel-plugin-transform-class-properties": "^6.4.0",
     "babel-plugin-transform-es2015-arrow-functions": "^6.1.18",
     "babel-plugin-transform-es2015-block-scoped-functions": "^6.1.18",
     "babel-plugin-transform-es2015-block-scoping": "^6.1.18",
