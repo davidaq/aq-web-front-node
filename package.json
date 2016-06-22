@@ -1,6 +1,6 @@
 {
   "name": "aq-web-front",
-  "version": "0.1.32",
+  "version": "0.1.33",
   "description": "A compilation framework to allow coding web frontends in a modern style.",
   "main": "index.js",
   "scripts": {
@@ -53,7 +53,7 @@
     "nib": "^1.1.0",
     "prompt": "^0.2.14",
     "sourcemap-codec": "^1.2.1",
-    "stylus": "^0.52.4",
+    "stylus": "^0.54.5",
     "underscore": "^1.8.3",
     "uuid": "^2.0.1",
     "yamljs": "^0.2.4",
